@@ -1,4 +1,10 @@
 $(document).ready(function(){
+  // html 태그의 lang 을 알아보자.
+  let lang =$('nav').attr('class', 'en');
+  console.log(lang);
+  
+
+
   // .header를 저장한다.
   let header = $('.header');
   let gnb = $('.gnb');
