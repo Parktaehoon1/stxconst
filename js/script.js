@@ -1,93 +1,88 @@
-$(document).ready(function(){
-  // 안내창 기능
-  // 추가기능 : 스크롤바 없애기
-  $('html').css('overflow', 'hidden');
-  // 
+$(document).ready(function () {
+  // 모달창
+  let modalWrap = $(".modal-wrap");
+  let modalClose = $(".modal-close");
 
-  let modalWrap = $('.modal-wrap');
-  let modalClose = $('.modal-close');
-  
-
-  modalClose.click(function(){
-    modalWrap.stop().fadeOut(500)
+  modalClose.click(function () {
+    modalWrap.stop().fadeOut(500);
     // 추가기능 : 스크롤바 살리기
-    $('html').css('overflow', 'auto');
+    // $('html').css('overflow', 'auto');
   });
-  let modalMain = $('.madal-main')
+  let modalMain = $(".modal-main");
   //내용 배경 클릭
-  modalMain.click(function(event){
+  modalMain.click(function (event) {
     // 클릭 정보 전달 막기
     event.stopPropagation();
   });
   //전체 배경 클릭
-  modalWrap.click(function(){
-    modalWrap.stop().fadeOut(500)
+  modalWrap.click(function () {
+    modalWrap.stop().fadeOut(500);
     // 추가기능 : 스크롤바 살리기
-    $('html').css('overflow', 'auto');
+    // $('html').css('overflow', 'auto');
   });
-  
-});
+  $("html").keydown(function (key) {
+    if (key.keyCode == 13) {
+      modalWrap.stop().fadeOut(200);
+      $("html").css("overflow", "auto");
+    }
+  });
 
-
-
-
-$(document).ready(function(){
   // .header를 저장한다.
-  let header = $('.header');
-  let gnb = $('.gnb');
+  let header = $(".header");
+  let gnb = $(".gnb");
   // 펼쳐졌을 때의 높이 값
   let gnbMaxHeight = gnb.outerHeight();
   // 닫혔을 때의 높이 값
   let gnbMinHeight = header.outerHeight();
   // 기본 header의 높이값 적용
-  header.css('height', gnbMinHeight);
+  header.css("height", gnbMinHeight);
 
-  gnb.mouseenter(function(){
-    header.css('height', gnbMaxHeight);
+  gnb.mouseenter(function () {
+    header.css("height", gnbMaxHeight);
   });
 
-  gnb.mouseleave(function(){
-    header.css('height', gnbMinHeight);
+  gnb.mouseleave(function () {
+    header.css("height", gnbMinHeight);
   });
 
   // 주메뉴 포커스 기능
-  let depth_1_Li = $('.depth1 > li');  
-  $.each(depth_1_Li, function(index){
-    $(this).mouseenter(function(){
+  let depth_1_Li = $(".depth1 > li");
+  $.each(depth_1_Li, function (index) {
+    $(this).mouseenter(function () {
       // li 의 > a 를 찾는다.
-      $(this).find('>a').addClass('depth1-focus');
+      $(this).find(">a").addClass("depth1-focus");
     });
-    $(this).mouseleave(function(){
+    $(this).mouseleave(function () {
       // li 의 > a 를 찾는다.
-      $(this).find('>a').removeClass('depth1-focus');
+      $(this).find(">a").removeClass("depth1-focus");
     });
   });
 
   // 컨텐츠 이동 버튼
-  let visualBt = $('.visual-bt');
-  // .part 영역이 
-  //html의 상단(top)으로 부터 
+  let visualBt = $(".visual-bt");
+  // .part 영역이
+  //html의 상단(top)으로 부터
   // 어느만큼 떨어진 위치 px 값
-  let partY = $('.part').offset().top;
+  let partY = $(".part").offset().top;
   console.log(partY);
 
-  visualBt.click(function(){
-    $('html').stop().animate({
-      scrollTop: partY
-    }, 500);
+  visualBt.click(function () {
+    $("html").stop().animate(
+      {
+        scrollTop: partY,
+      },
+      500
+    );
   });
 
   // part 배경 배치
-  let partListLi = $('.part-list li');
+  let partListLi = $(".part-list li");
   let partListW = 1200 / partListLi.length;
-  $.each(partListLi, function(index){    
+  $.each(partListLi, function (index) {
     let tgX = partListW * index;
     tgX = -1 * tgX;
-    $(this).css('background-position-x', tgX);
+    $(this).css("background-position-x", tgX);
   });
-
-
 });
 
-window.onload = function(){  
-}
+window.onload = function () {};
